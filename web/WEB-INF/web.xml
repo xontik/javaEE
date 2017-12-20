@@ -2,7 +2,7 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>newServlet</servlet-name>
-        <servlet-class>newServlet</servlet-class>
+        <servlet-class>controler.newServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>newServlet</servlet-name>
@@ -13,4 +13,7 @@
             30
         </session-timeout>
     </session-config>
+    <welcome-file-list>
+        <welcome-file>newServlet</welcome-file>
+    </welcome-file-list>
 </web-app>
