@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package javabeans;
+package beans;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -32,12 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "Article")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Article.findAll", query = "SELECT a FROM Article a")
-    , @NamedQuery(name = "Article.findByIdArticle", query = "SELECT a FROM Article a WHERE a.idArticle = :idArticle")
-    , @NamedQuery(name = "Article.findByNomArticle", query = "SELECT a FROM Article a WHERE a.nomArticle = :nomArticle")
-    , @NamedQuery(name = "Article.findByPrix", query = "SELECT a FROM Article a WHERE a.prix = :prix")
-    , @NamedQuery(name = "Article.findByTaille", query = "SELECT a FROM Article a WHERE a.taille = :taille")})
+
 public class Article implements Serializable {
 
     private static final long serialVersionUID = 1L;
