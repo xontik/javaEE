@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author p1603867
+ * @author xontik
  */
 @Entity
 @Table(name = "Client")
@@ -199,7 +199,7 @@ public class Client implements Serializable {
 
     @Override
     public String toString() {
-        return "JavaBean.Client[ idClient=" + idClient + " ]";
+        return "beans.Client[ idClient=" + idClient + " ]";
     }
     
 }

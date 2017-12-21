@@ -17,4 +17,9 @@ body {
 main {
     flex: 1 0 auto;
 }
-      
+nav img {
+    height: 3.5em;
+}
+
+
+  

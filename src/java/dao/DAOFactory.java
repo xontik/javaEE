@@ -85,4 +85,7 @@ public class DAOFactory {
     public ArticleDao getArticleDao() {
         return new ArticleDaoImpl( this );
     }
+    public CategorieDao getCategorieDao() {
+        return new CategorieDaoImpl( this );
+    }
 }

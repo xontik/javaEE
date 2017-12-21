@@ -1,0 +1,38 @@
+.product {
+    height:450px;
+    width:23%;
+    padding: 10px;
+}
+@media screen and (max-width: 1280px) {
+    .product {
+        width:32%;
+    }
+}
+@media screen and (max-width: 800px) {
+    .product {
+        width:49%;
+    }
+}
+@media screen and (max-width: 600px) {
+    .product {
+        width:90%;
+    }
+}
+
+.products {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+
+}
+.fill img {
+    height: 250px;
+    width:100%;
+    object-fit:cover;
+}
+
+@@media  {
+
+}

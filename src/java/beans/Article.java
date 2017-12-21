@@ -8,17 +8,17 @@ package beans;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -27,12 +27,16 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author p1603867
+ * @author xontik
  */
 @Entity
 @Table(name = "Article")
 @XmlRootElement
-
+@NamedQueries({
+    @NamedQuery(name = "Article.findAll", query = "SELECT a FROM Article a")
+    , @NamedQuery(name = "Article.findByIdArticle", query = "SELECT a FROM Article a WHERE a.idArticle = :idArticle")
+    , @NamedQuery(name = "Article.findByNomArticle", query = "SELECT a FROM Article a WHERE a.nomArticle = :nomArticle")
+    , @NamedQuery(name = "Article.findByPrix", query = "SELECT a FROM Article a WHERE a.prix = :prix")})
 public class Article implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -46,18 +50,16 @@ public class Article implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "nomArticle")
     private String nomArticle;
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = "image")
+    private String image;
     @Basic(optional = false)
     @NotNull
     @Column(name = "prix")
     private float prix;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 3)
-    @Column(name = "taille")
-    private String taille;
-    @JoinColumn(name = "idCategorie", referencedColumnName = "idCategorie")
-    @ManyToOne(optional = false)
-    private Categorie idCategorie;
+    
+    private int idCategorie;
 
     public Article() {
     }
@@ -66,11 +68,12 @@ public class Article implements Serializable {
         this.idArticle = idArticle;
     }
 
-    public Article(Integer idArticle, String nomArticle, float prix, String taille) {
+    public Article(Integer idArticle, String nomArticle, float prix, String image) {
         this.idArticle = idArticle;
         this.nomArticle = nomArticle;
         this.prix = prix;
-        this.taille = taille;
+        this.image = image;
+
     }
 
     public Integer getIdArticle() {
@@ -96,24 +99,19 @@ public class Article implements Serializable {
     public void setPrix(float prix) {
         this.prix = prix;
     }
-
-    public String getTaille() {
-        return taille;
+    public String getImage() {
+        return image;
     }
 
-    public void setTaille(String taille) {
-        this.taille = taille;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-
-
-
-
-    public Categorie getIdCategorie() {
+    public int getIdCategorie() {
         return idCategorie;
     }
 
-    public void setIdCategorie(Categorie idCategorie) {
+    public void setIdCategorie(int idCategorie) {
         this.idCategorie = idCategorie;
     }
 
@@ -139,7 +137,7 @@ public class Article implements Serializable {
 
     @Override
     public String toString() {
-        return "JavaBean.Article[ idArticle=" + idArticle + " ]";
+        return "beans.Article[ idArticle=" + idArticle + " ]";
     }
     
 }

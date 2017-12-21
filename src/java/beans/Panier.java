@@ -8,16 +8,17 @@ package beans;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -25,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author p1603867
+ * @author xontik
  */
 @Entity
 @Table(name = "Panier")
@@ -45,8 +46,8 @@ public class Panier implements Serializable {
     @Size(max = 50)
     @Column(name = "tokenPanier")
     private String tokenPanier;
-    @ManyToMany(mappedBy = "panierCollection")
-    private Collection<Article> articleCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "panier")
+    private Collection<ArticlePanier> articlePanierCollection;
     @JoinColumn(name = "idClient", referencedColumnName = "idClient")
     @ManyToOne
     private Client idClient;
@@ -75,12 +76,12 @@ public class Panier implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Article> getArticleCollection() {
-        return articleCollection;
+    public Collection<ArticlePanier> getArticlePanierCollection() {
+        return articlePanierCollection;
     }
 
-    public void setArticleCollection(Collection<Article> articleCollection) {
-        this.articleCollection = articleCollection;
+    public void setArticlePanierCollection(Collection<ArticlePanier> articlePanierCollection) {
+        this.articlePanierCollection = articlePanierCollection;
     }
 
     public Client getIdClient() {
@@ -113,7 +114,7 @@ public class Panier implements Serializable {
 
     @Override
     public String toString() {
-        return "JavaBean.Panier[ idPanier=" + idPanier + " ]";
+        return "beans.Panier[ idPanier=" + idPanier + " ]";
     }
     
 }

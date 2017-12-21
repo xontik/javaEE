@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author p1603867
+ * @author xontik
  */
 @Entity
 @Table(name = "Categorie")
@@ -47,8 +47,6 @@ public class Categorie implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "nom")
     private String nom;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCategorie")
-    private Collection<Article> articleCollection;
 
     public Categorie() {
     }
@@ -78,15 +76,7 @@ public class Categorie implements Serializable {
         this.nom = nom;
     }
 
-    @XmlTransient
-    public Collection<Article> getArticleCollection() {
-        return articleCollection;
-    }
-
-    public void setArticleCollection(Collection<Article> articleCollection) {
-        this.articleCollection = articleCollection;
-    }
-
+   
     @Override
     public int hashCode() {
         int hash = 0;
@@ -109,7 +99,7 @@ public class Categorie implements Serializable {
 
     @Override
     public String toString() {
-        return "JavaBean.Categorie[ idCategorie=" + idCategorie + " ]";
+        return "beans.Categorie[ idCategorie=" + idCategorie + " ]";
     }
     
 }

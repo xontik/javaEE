@@ -5,6 +5,7 @@
  */
 package dao;
 import beans.Article;
+import beans.Categorie;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,11 +13,9 @@ import java.util.List;
  *
  * @author xontik
  */
-public interface ArticleDao {
-    void creer ( Article article) throws DAOException;
-    Article trouver (int id) throws DAOException ;    
-    List<Article> findAll () throws DAOException ;
-    List<Article> findByCategorie (int idCat) throws DAOException ;
-
+public interface CategorieDao {
+    void creer ( Categorie article) throws DAOException;
+    Categorie trouver (int id) throws DAOException ;    
+    List<Categorie> findAll () throws DAOException ;
 
 }

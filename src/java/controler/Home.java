@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import beans.Categorie;
+import static controler.Products.CONF_DAO_FACTORY;
+import dao.CategorieDao;
+import dao.DAOFactory;
 
 /**
  *
@@ -22,8 +25,13 @@ import beans.Categorie;
 public class Home extends HttpServlet {
 
     
-    
+    private CategorieDao     categorieDao;
 
+    @Override
+    public void init(){
+        this.categorieDao = ( (DAOFactory) getServletContext().getAttribute( CONF_DAO_FACTORY ) ).getCategorieDao();
+
+    }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -36,13 +44,7 @@ public class Home extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Categorie> cats = new ArrayList<Categorie>();
-        cats.add(new Categorie(1, "T-Shirt"));
-        cats.add(new Categorie(2, "Jeans"));
-        cats.add(new Categorie(3, "Pull"));
-        cats.add(new Categorie(4, "Veste"));
-        cats.add(new Categorie(5, "Bonnet"));
-        
+        ArrayList<Categorie> cats = (ArrayList<Categorie>) this.categorieDao.findAll();
         request.setAttribute("cats", cats);
         this.getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
         

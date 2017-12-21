@@ -4,10 +4,7 @@
         <servlet-name>Home</servlet-name>
         <servlet-class>controler.Home</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>Products</servlet-name>
-        <servlet-class>controler.Products</servlet-class>
-    </servlet>
+    
     <servlet-mapping>
         <servlet-name>Home</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -20,6 +17,10 @@
         <servlet-name>Login</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>Products</servlet-name>
+        <servlet-class>controler.Products</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Products</servlet-name>
         <url-pattern>/products</url-pattern>

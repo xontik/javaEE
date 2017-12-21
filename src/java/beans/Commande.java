@@ -9,16 +9,17 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author p1603867
+ * @author xontik
  */
 @Entity
 @Table(name = "Commande")
@@ -68,8 +69,8 @@ public class Commande implements Serializable {
     @Column(name = "dateLivraison")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateLivraison;
-    @ManyToMany(mappedBy = "commandeCollection")
-    private Collection<Article> articleCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "commande")
+    private Collection<ArticleCommande> articleCommandeCollection;
     @JoinColumn(name = "idClient", referencedColumnName = "idClient")
     @ManyToOne(optional = false)
     private Client idClient;
@@ -130,12 +131,12 @@ public class Commande implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Article> getArticleCollection() {
-        return articleCollection;
+    public Collection<ArticleCommande> getArticleCommandeCollection() {
+        return articleCommandeCollection;
     }
 
-    public void setArticleCollection(Collection<Article> articleCollection) {
-        this.articleCollection = articleCollection;
+    public void setArticleCommandeCollection(Collection<ArticleCommande> articleCommandeCollection) {
+        this.articleCommandeCollection = articleCommandeCollection;
     }
 
     public Client getIdClient() {
@@ -168,7 +169,7 @@ public class Commande implements Serializable {
 
     @Override
     public String toString() {
-        return "JavaBean.Commande[ idCommande=" + idCommande + " ]";
+        return "beans.Commande[ idCommande=" + idCommande + " ]";
     }
     
 }
