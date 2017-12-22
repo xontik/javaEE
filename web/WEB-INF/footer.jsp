@@ -24,7 +24,7 @@
     </div>
     <div class="footer-copyright">
         <div class="container">
-            ï¿½ 2017 Copyright IceCube
+            © 2017 Copyright IceCube
             <!--<a class="grey-text text-lighten-4 right" href="#!">More Links</a>-->
         </div>
     </div>

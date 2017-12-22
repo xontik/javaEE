@@ -15,7 +15,7 @@ import java.util.List;
  */
 public interface CategorieDao {
     void creer ( Categorie article) throws DAOException;
-    Categorie trouver (int id) throws DAOException ;    
+    Categorie findById (int id) throws DAOException ;    
     List<Categorie> findAll () throws DAOException ;
 
 }

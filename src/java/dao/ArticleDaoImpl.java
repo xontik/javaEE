@@ -33,7 +33,7 @@ public class ArticleDaoImpl implements ArticleDao {
 
     /* Implémentation de la méthode définie dans l'interface UtilisateurDao */
     @Override
-    public Article trouver(int id) throws DAOException {
+    public Article findById(int id) throws DAOException {
         Connection connexion = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;

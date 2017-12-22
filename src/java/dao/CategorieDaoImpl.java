@@ -33,7 +33,7 @@ public class CategorieDaoImpl implements CategorieDao {
 
     /* Implémentation de la méthode définie dans l'interface UtilisateurDao */
     @Override
-    public Categorie trouver(int id) throws DAOException {
+    public Categorie findById(int id) throws DAOException {
         Connection connexion = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
