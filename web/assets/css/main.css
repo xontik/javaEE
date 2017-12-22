@@ -3,7 +3,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
-/* 
+/*
     Created on : Dec 20, 2017, 9:37:33 PM
     Author     : xontik
 */
@@ -21,5 +21,18 @@ nav img {
     height: 3.5em;
 }
 
-
-  
+.container {
+  margin: 0 auto;
+  max-width: 1280px;
+  width: 90%;
+}
+/* @media only screen and (min-width: 601px){
+  .container {
+    width: 85%;
+  }
+}
+@media only screen and (min-width: 993px){
+  .container {
+    width: 80%;
+  }
+} */

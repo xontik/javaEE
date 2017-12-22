@@ -30,30 +30,30 @@
                 <div class="nav-wrapper">
                     <a href="home" ><img  src="assets/images/logo.png" alt="Ice cube logo"/></a>
                     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-                    <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li><a href="#!">Panier</a></li>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a href="#!"><i class="material-icons">shopping_cart</i></a></li>
 
                         <% if (session.getAttribute("logged") != null && ((Boolean) session.getAttribute("logged") == true)) { %>
-                        <li><a href="login">Se connecter</a></li>
+                        <li><a href="login"><i class="material-icons">account_circle</i></a></li>
                             <% } else {%>
-                        <li><a href="login">Mon compte</a></li>
+                        <li><a href="login">Connectez-vous  !<i class="material-icons right">account_circle</i></a></li>
                             <% }%>
 
 
                     </ul>
                     <ul class="side-nav" id="mobile-demo">
                         <% if (session.getAttribute("logged") != null && ((Boolean) session.getAttribute("logged") == true)) { %>
-                        <li><a href="login">Se connecter</a></li>
+                        <li><a href="login"><i class="material-icons left">account_circle</i>Se connecter</a></li>
                             <% } else {%>
-                        <li><a href="login">Mon compte</a></li>
+                        <li><a href="login"><i class="material-icons left">account_circle</i>Mon compte</a></li>
                             <% }%>
-                        <li><a href="#!">Panier</a></li>
+                        <li><a href="#!"><i class="material-icons left">shopping_cart</i>Panier</a></li>
                     </ul>
                 </div>
                 <div class="nav-content">
 
                     <ul class="tabs tabs-transparent">
-                            <li class="tab " ><a class="${empty param.categorie ? 'active' : ''}" target="_self" href="home">Accueil</a></li>
+                            <li class="tab " ><a class="${empty param.categorie ? 'active' : ''}" target="_self" href="home"><i class="material-icons" >home</i></a></li>
                             <c:forEach items="${cats}" var="cat" >
                             <li class="tab " ><a class="${param.categorie eq cat.idCategorie ? 'active' : ''}" target="_self" href="<c:url value="products?categorie=${cat.idCategorie}"/>" > ${cat.nom}</a></li>
                             <c:if test="${param.categorie eq cat.idCategorie}" >

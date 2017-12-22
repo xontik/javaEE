@@ -68,7 +68,7 @@ public class ArticleDaoImpl implements ArticleDao {
         article.setIdArticle(resultSet.getInt("idArticle"));        
         article.setImage(resultSet.getString("image"));
         article.setIdCategorie(resultSet.getInt("idCategorie"));
-        article.setPrix(resultSet.getInt("idCategorie"));
+        article.setPrix(resultSet.getFloat("prix"));
 
         return article;
     }
