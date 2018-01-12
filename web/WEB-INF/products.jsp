@@ -15,7 +15,7 @@ Author     : xontik
                 <div class="card sticky-action grey lighten-5">
                     <div class="card-image fill">
                         <a href="product?id=${article.idArticle}"><img class="activator" src="assets/images/${article.image}"/></a>
-                        <a class="btn-floating halfway-fab waves-effect waves-light pink lighten-2"><i class="material-icons">add_shopping_cart</i></a>
+                        <a class="btn-floating halfway-fab waves-effect waves-light pink lighten-2" href="product?id=${article.idArticle}"><i class="material-icons">add_shopping_cart</i></a>
                     </div>
                     <div class="card-content">
                         <span>${article.nomArticle}</span>

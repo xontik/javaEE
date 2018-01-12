@@ -46,6 +46,13 @@ public class Home extends HttpServlet {
             throws ServletException, IOException {
         ArrayList<Categorie> cats = (ArrayList<Categorie>) this.categorieDao.findAll();
         request.setAttribute("cats", cats);
+        
+        ArrayList<String> catsImage = (ArrayList < String >)this.categorieDao.findImages();
+        request.setAttribute("catsImage", catsImage);
+
+        List<String> css = new ArrayList<String>();
+        css.add("products");
+        request.setAttribute("css", css);
         this.getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
         
         //code servlet de l accueil

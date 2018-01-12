@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Taille.findAll", query = "SELECT t FROM Taille t")
     , @NamedQuery(name = "Taille.findByIdTaille", query = "SELECT t FROM Taille t WHERE t.idTaille = :idTaille")
-    , @NamedQuery(name = "Taille.findByNom", query = "SELECT t FROM Taille t WHERE t.nom = :nom")})
+    , @NamedQuery(name = "Taille.findByNom", query = "SELECT t FROM Taille t WHERE t.code = :code")})
 public class Taille implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -45,8 +45,8 @@ public class Taille implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 4)
-    @Column(name = "nom")
-    private String nom;
+    @Column(name = "code")
+    private String code;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "taille")
     private Collection<ArticleCommande> articleCommandeCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "taille")
@@ -59,9 +59,9 @@ public class Taille implements Serializable {
         this.idTaille = idTaille;
     }
 
-    public Taille(Integer idTaille, String nom) {
+    public Taille(Integer idTaille, String code) {
         this.idTaille = idTaille;
-        this.nom = nom;
+        this.code = code;
     }
 
     public Integer getIdTaille() {
@@ -73,11 +73,11 @@ public class Taille implements Serializable {
     }
 
     public String getNom() {
-        return nom;
+        return code;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setNom(String code) {
+        this.code = code;
     }
 
     @XmlTransient

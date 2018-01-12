@@ -25,6 +25,7 @@ public class CategorieDaoImpl implements CategorieDao {
     private DAOFactory daoFactory;
     private static final String SQL_SELECT_BY_ID = "SELECT * FROM Categorie WHERE idCategorie = ?";
     private static final String SQL_SELECT_ALL = "SELECT * FROM Categorie ORDER BY idCategorie";
+    private static final String SQL_SELECT_IMAGES_BY_CATS = "SELECT image FROM Article group by idCategorie order by idCategorie";
 
 
     CategorieDaoImpl(DAOFactory daoFactory) {
@@ -72,7 +73,7 @@ public class CategorieDaoImpl implements CategorieDao {
     @Override
     public List<Categorie> findAll() throws DAOException {
         Connection connexion = null;
-        PreparedStatement preparedStatement = null;
+        PreparedStatement preparedStatement = null; 
         ResultSet resultSet = null;
         ArrayList<Categorie> cats = new ArrayList<Categorie>();
 
@@ -96,4 +97,31 @@ public class CategorieDaoImpl implements CategorieDao {
           
           return cats;
     }
+    
+    public List<String> findImages() throws DAOException {
+        
+        List<String> images = new ArrayList<>();
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+
+        try {
+            /* Récupération d'une connexion depuis la Factory */
+            connexion = daoFactory.getConnection();
+            preparedStatement = initialisationRequetePreparee(connexion, SQL_SELECT_IMAGES_BY_CATS, false);
+            resultSet = preparedStatement.executeQuery();
+            /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
+            while (resultSet.next()) {
+                images.add(resultSet.getString("image"));
+            }
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        } finally {
+            fermeturesSilencieuses(resultSet, preparedStatement, connexion);
+        }
+        
+        return images;
+    }
+
 }

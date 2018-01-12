@@ -5,8 +5,11 @@
  */
 package dao;
 import beans.Article;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -17,6 +20,10 @@ public interface ArticleDao {
     Article findById (int id) throws DAOException ;    
     List<Article> findAll () throws DAOException ;
     List<Article> findByCategorie (int idCat) throws DAOException ;
+    Article map (ResultSet rs) throws SQLException ;    
+
+    
+
 
 
 }

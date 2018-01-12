@@ -88,4 +88,16 @@ public class DAOFactory {
     public CategorieDao getCategorieDao() {
         return new CategorieDaoImpl( this );
     }
+    public ClientDao getClientDao() {
+        return new ClientDaoImpl( this );
+    }
+    public ArticlePanierDao getArticlePanierDao(){
+        return new ArticlePanierDaoImpl(this);
+    }
+    public PanierDao getPanierDao(){
+        return new PanierDaoImpl(this);
+    }
+    public TailleDao getTailleDao(){
+        return new TailleDaoImpl(this);
+    }
 }

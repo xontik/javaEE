@@ -7,6 +7,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value = "fr_FR"/>
 <!DOCTYPE html>
 <html>
     <head>
@@ -31,10 +33,10 @@
                     <a href="home" ><img  src="assets/images/logo.png" alt="Ice cube logo"/></a>
                     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                     <ul class="right hide-on-med-and-down">
-                        <li><a href="#!"><i class="material-icons">shopping_cart</i></a></li>
+                        <li><a href="panier">${0 + nbArticle } article(s)<i class="material-icons right">shopping_cart</i></a></li>
 
                         <% if (session.getAttribute("logged") != null && ((Boolean) session.getAttribute("logged") == true)) { %>
-                        <li><a href="login"><i class="material-icons">account_circle</i></a></li>
+                        <li><a href="login">Déconnexion<i class="material-icons right">account_circle</i></a></li>
                             <% } else {%>
                         <li><a href="login">Connectez-vous  !<i class="material-icons right">account_circle</i></a></li>
                             <% }%>
@@ -47,7 +49,7 @@
                             <% } else {%>
                         <li><a href="login"><i class="material-icons left">account_circle</i>Mon compte</a></li>
                             <% }%>
-                        <li><a href="#!"><i class="material-icons left">shopping_cart</i>Panier</a></li>
+                        <li><a href="panier"><i class="material-icons left">shopping_cart</i>${0 + nbArticle } article(s)</a></li>
                     </ul>
                 </div>
                 <div class="nav-content">

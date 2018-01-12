@@ -62,7 +62,7 @@ public class ArticleDaoImpl implements ArticleDao {
     public void creer(Article utilisateur) throws IllegalArgumentException, DAOException {
     }
 
-    private static Article map(ResultSet resultSet) throws SQLException {
+    public Article map(ResultSet resultSet) throws SQLException {
         Article article = new Article();
         article.setNomArticle(resultSet.getString("nomArticle"));
         article.setIdArticle(resultSet.getInt("idArticle"));        

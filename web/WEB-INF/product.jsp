@@ -21,10 +21,11 @@ Author     : xontik
 
             </div>
             <div class="card-action">
-                <form class="" action="index.html" method="post">
+                <form class="" action="addtocart" method="post">
+                    <input type="hidden" value="${article.idArticle}" name="idArticle"/>
                     <div class="row">
                     <div class="input-field col s5">
-                        <select>
+                        <select name="taille">
                             <option value="" disabled selected>Taille</option>
                             <option value="1">XS</option>
                             <option value="2">S</option>
@@ -36,7 +37,7 @@ Author     : xontik
                         <label>Materialize Select</label>
                     </div>
                     <div class="input-field col s3 ">
-                        <input id="qte" value="1" type="number" >
+                        <input id="qte" name="qte" value="1" type="number" >
                             <label for="qte">Qte.</label>
                         </div>
 

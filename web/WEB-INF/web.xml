@@ -8,6 +8,18 @@
         <servlet-name>Product</servlet-name>
         <servlet-class>controler.Product</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Panier</servlet-name>
+        <servlet-class>controler.Panier</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddToCart</servlet-name>
+        <servlet-class>controler.AddToCart</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>deleteFromCart</servlet-name>
+        <servlet-class>controler.deleteFromCart</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Home</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -31,6 +43,18 @@
     <servlet-mapping>
         <servlet-name>Product</servlet-name>
         <url-pattern>/product</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Panier</servlet-name>
+        <url-pattern>/panier</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddToCart</servlet-name>
+        <url-pattern>/addtocart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteFromCart</servlet-name>
+        <url-pattern>/deletefromcart</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

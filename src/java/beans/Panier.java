@@ -46,10 +46,6 @@ public class Panier implements Serializable {
     @Size(max = 50)
     @Column(name = "tokenPanier")
     private String tokenPanier;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "panier")
-    private Collection<ArticlePanier> articlePanierCollection;
-    @JoinColumn(name = "idClient", referencedColumnName = "idClient")
-    @ManyToOne
     private Client idClient;
 
     public Panier() {
@@ -73,15 +69,6 @@ public class Panier implements Serializable {
 
     public void setTokenPanier(String tokenPanier) {
         this.tokenPanier = tokenPanier;
-    }
-
-    @XmlTransient
-    public Collection<ArticlePanier> getArticlePanierCollection() {
-        return articlePanierCollection;
-    }
-
-    public void setArticlePanierCollection(Collection<ArticlePanier> articlePanierCollection) {
-        this.articlePanierCollection = articlePanierCollection;
     }
 
     public Client getIdClient() {

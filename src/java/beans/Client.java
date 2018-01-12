@@ -36,7 +36,6 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Client.findAll", query = "SELECT c FROM Client c")
     , @NamedQuery(name = "Client.findByIdClient", query = "SELECT c FROM Client c WHERE c.idClient = :idClient")
-    , @NamedQuery(name = "Client.findByLogin", query = "SELECT c FROM Client c WHERE c.login = :login")
     , @NamedQuery(name = "Client.findByPassword", query = "SELECT c FROM Client c WHERE c.password = :password")
     , @NamedQuery(name = "Client.findByEmail", query = "SELECT c FROM Client c WHERE c.email = :email")
     , @NamedQuery(name = "Client.findByNomClient", query = "SELECT c FROM Client c WHERE c.nomClient = :nomClient")
@@ -53,11 +52,6 @@ public class Client implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
-    @Column(name = "login")
-    private String login;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 255)
     @Column(name = "password")
     private String password;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
@@ -93,9 +87,8 @@ public class Client implements Serializable {
         this.idClient = idClient;
     }
 
-    public Client(Integer idClient, String login, String password, String email, String nomClient, String prenomClient, Date dateNaissance) {
+    public Client(Integer idClient, String password, String email, String nomClient, String prenomClient, Date dateNaissance) {
         this.idClient = idClient;
-        this.login = login;
         this.password = password;
         this.email = email;
         this.nomClient = nomClient;
@@ -109,14 +102,6 @@ public class Client implements Serializable {
 
     public void setIdClient(Integer idClient) {
         this.idClient = idClient;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
     }
 
     public String getPassword() {

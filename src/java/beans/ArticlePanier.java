@@ -35,6 +35,7 @@ public class ArticlePanier implements Serializable {
     @JoinColumn(name = "idTaille", referencedColumnName = "idTaille", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Taille taille;
+    private int quantite;
     @JoinColumn(name = "idArticle", referencedColumnName = "idArticle", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Article article;
@@ -72,7 +73,12 @@ public class ArticlePanier implements Serializable {
     public Article getArticle() {
         return article;
     }
-
+    public int getQuantite(){
+        return quantite;
+    }
+     public void setQuantite(int quantite){
+         this.quantite = quantite;
+    }
     public void setArticle(Article article) {
         this.article = article;
     }
@@ -111,3 +117,5 @@ public class ArticlePanier implements Serializable {
     }
     
 }
+
+
