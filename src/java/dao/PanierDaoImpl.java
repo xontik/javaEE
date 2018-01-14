@@ -25,6 +25,9 @@ public class PanierDaoImpl implements PanierDao {
     private DAOFactory daoFactory;
     private static final String SQL_SELECT_BY_CLIENT_ID = "SELECT * FROM Panier WHERE idClient =  ?";
     private static final String SQL_INSERT = "INSERT INTO Panier (idClient) VALUES(?)";
+    private static final String SQL_INSERT_TOKEN = "INSERT INTO Panier (tokenPanier) VALUES(?)";
+    private static final String SQL_SELECT_BY_TOKEN = "SELECT * FROM Panier WHERE tokenPanier = ?";
+    
     
     PanierDaoImpl(DAOFactory daoFactory) {
         this.daoFactory = daoFactory;
@@ -85,6 +88,52 @@ public class PanierDaoImpl implements PanierDao {
         }
 
         return -1;
+    }
+    @Override
+    public int exist(String token) throws DAOException {
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            /* Récupération d'une connexion depuis la Factory */
+            connexion = daoFactory.getConnection();
+            preparedStatement = initialisationRequetePreparee(connexion, SQL_SELECT_BY_TOKEN, false, token);
+            resultSet = preparedStatement.executeQuery();
+            /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
+            if (resultSet.next()) {
+                return resultSet.getInt("idPanier");
+            }
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        } finally {
+            fermeturesSilencieuses(resultSet, preparedStatement, connexion);
+        }
+
+        return -1;
+    }
+
+    @Override
+    public String createWithToken() throws DAOException {
+    Connection connexion = null;
+    
+        PreparedStatement preparedStatement = null;
+        try {
+            /* Récupération d'une connexion depuis la Factory */
+            connexion = daoFactory.getConnection();
+            String hash = String.valueOf(connexion.hashCode());
+            preparedStatement = initialisationRequetePreparee(connexion, SQL_INSERT_TOKEN, false, hash);
+            int r = preparedStatement.executeUpdate();
+            /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
+            if (r == 1) {
+                return hash;
+            }
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        } finally {
+            fermeturesSilencieuses(preparedStatement, connexion);
+        }
+
+        return null;
     }
     
 }

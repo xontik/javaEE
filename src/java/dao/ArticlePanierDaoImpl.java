@@ -37,6 +37,15 @@ private static final String SQL_SELECT_BY_CLIENT_ID = "SELECT * FROM `ArticlePan
             + "JOIN Panier USING(idPanier)"
             + "JOIN Client USING(idClient)"
             + "WHERE idClient = ?";
+private static final String SQL_SELECT_BY_TOKEN = "SELECT * FROM `ArticlePanier` "
+            + "JOIN Article USING(idArticle) "
+            + "JOIN Taille USING(idTaille)"
+            + "JOIN Panier USING(idPanier)"
+            + "LEFT JOIN Client USING(idClient)"
+            + "WHERE tokenPanier = ?";
+//TODO pas de nouveau panier quand deja un
+//pas de suppression possible
+        
 private static final String SQL_INSERT = "INSERT INTO ArticlePanier (idArticle, idPanier, idTaille, quantite) VALUES (?,?,?,?)";
 private static final String SQL_DELETE = "DELETE FROM ArticlePanier WHERE idArticle = ? AND idPanier = ? AND idTaille = ?";
 
@@ -105,7 +114,7 @@ private static final String SQL_DELETE = "DELETE FROM ArticlePanier WHERE idArti
     }
 
     @Override
-    public boolean add(int idClient, int idArticle, int qte, int idTaille) {
+    public boolean addByClient(int idClient, int idArticle, int qte, int idTaille) {
         this.delete(idClient, idArticle, idTaille);
         PanierDao panDao = this.daoFactory.getPanierDao();
         
@@ -164,6 +173,60 @@ private static final String SQL_DELETE = "DELETE FROM ArticlePanier WHERE idArti
         }
 
         return false;
+    }
+
+    @Override
+    public String addByToken(String token, int idArticle, int qte, int idTaille) throws DAOException {
+        PanierDao panDao = this.daoFactory.getPanierDao();
+        
+        if(panDao.exist(token) == -1){
+            token = panDao.createWithToken();
+        }
+        int idPan = panDao.exist(token);
+        Connection connexion = null;
+    
+        PreparedStatement preparedStatement = null;
+        try {
+            /* Récupération d'une connexion depuis la Factory */
+            connexion = daoFactory.getConnection();
+            preparedStatement = initialisationRequetePreparee(connexion, SQL_INSERT, false, idArticle,idPan,idTaille,qte);
+            int r = preparedStatement.executeUpdate();
+            /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
+            if (r == 1) {
+                return token;
+            }
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        } finally {
+            fermeturesSilencieuses(preparedStatement, connexion);
+        }
+
+        return null;
+    }
+
+    @Override
+    public List<ArticlePanier> findByToken(String token) throws DAOException {
+         Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        List<ArticlePanier> articlesPanier = new ArrayList<>();
+        try {
+            /* Récupération d'une connexion depuis la Factory */
+            connexion = daoFactory.getConnection();
+            preparedStatement = initialisationRequetePreparee(connexion, SQL_SELECT_BY_TOKEN, false, token);
+            resultSet = preparedStatement.executeQuery();
+            /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
+            while (resultSet.next()) {
+                ArticlePanier article = map(resultSet);
+                articlesPanier.add(article);
+            }
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        } finally {
+            fermeturesSilencieuses(resultSet, preparedStatement, connexion);
+        }
+
+        return articlesPanier;
     }
 
 

@@ -15,7 +15,9 @@ import java.util.List;
 public interface ArticlePanierDao {
     public List<ArticlePanier> findByCartId(int idCart) throws DAOException;
     public List<ArticlePanier> findByClienId(int idClient) throws DAOException;
-    public boolean add(int idClient, int idArticle, int qte, int idTaille) throws DAOException;
+    public List<ArticlePanier> findByToken(String token) throws DAOException; //to"zesqwx
+    public boolean addByClient(int idClient, int idArticle, int qte, int idTaille) throws DAOException;
+    public String addByToken(String token, int idArticle, int qte, int idTaille) throws DAOException;
     public boolean delete(int idClient, int idArticle, int taille) throws DAOException;
 
     

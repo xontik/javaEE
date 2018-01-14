@@ -19,7 +19,9 @@ public interface PanierDao {
     
     Panier map(ResultSet rs) throws SQLException;
     public boolean create(int idClient) throws DAOException;
+    public String createWithToken() throws DAOException;
     public int exist(int idClient) throws DAOException;
+    public int exist(String token) throws DAOException;
 
 }
 

@@ -41,6 +41,7 @@ public class deleteFromCart extends HttpServlet {
             int idTaille = Integer.parseInt(request.getParameter("idTaille"));
             this.articlePanierDao.delete(idClient, idArticle, idTaille);
         }
+                //gerer les non connecter
 
         response.sendRedirect("panier");
     }

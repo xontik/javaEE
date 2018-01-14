@@ -22,7 +22,7 @@ Author     : xontik
             </div>
             <div class="card-action">
                 <form class="" action="addtocart" method="post">
-                    <input type="hidden" value="${article.idArticle}" name="idArticle"/>
+                    <input type="hidden" value="${article.idArticle}" name="idArticle" required/>
                     <div class="row">
                     <div class="input-field col s5">
                         <select name="taille">

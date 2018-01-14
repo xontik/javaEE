@@ -2,6 +2,7 @@
 <%@include file="header.jsp" %>
 
 <h1>Panier</h1>
+
 <c:choose>
   <c:when test="${nbArticle==0 || nbArticle==null}">
     Votre panier est vide !
@@ -10,7 +11,7 @@
     <ul class="collection">
     <c:forEach items="${sespanier}" var="lap">
         <li class="collection-item avatar">
-        <img src="assets/images/${lap.article.image}" class="circle"/>
+            <a href="product?id=${lap.article.idArticle}" ><img src="assets/images/${lap.article.image}" class="circle"/></a>
         <span class="title">${lap.article.nomArticle} - <fmt:formatNumber value = "${lap.article.prix}" type = "currency"/></span>
         <p>Taille : ${lap.taille.nom} - Qte: ${lap.quantite} <br>
             <a href="deletefromcart?idArticle=${lap.article.idArticle}&idTaille=${lap.taille.idTaille}">Supprimer</a>
