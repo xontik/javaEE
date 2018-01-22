@@ -20,6 +20,14 @@
         <servlet-name>deleteFromCart</servlet-name>
         <servlet-class>controler.deleteFromCart</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Order</servlet-name>
+        <servlet-class>controler.Order</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Orders</servlet-name>
+        <servlet-class>controler.Orders</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Home</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -55,6 +63,14 @@
     <servlet-mapping>
         <servlet-name>deleteFromCart</servlet-name>
         <url-pattern>/deletefromcart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Order</servlet-name>
+        <url-pattern>/order</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Orders</servlet-name>
+        <url-pattern>/orders</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

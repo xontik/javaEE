@@ -16,6 +16,6 @@ import java.util.List;
  */
 public interface ClientDao {
     Client getFromConnection(String email, String pwd) throws DAOException;
-    Client map(ResultSet rs) throws SQLException;
+    public Client map(ResultSet rs) throws SQLException;
 
 }

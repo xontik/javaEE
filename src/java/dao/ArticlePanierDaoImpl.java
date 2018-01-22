@@ -36,13 +36,13 @@ private static final String SQL_SELECT_BY_CLIENT_ID = "SELECT * FROM `ArticlePan
             + "JOIN Taille USING(idTaille)"
             + "JOIN Panier USING(idPanier)"
             + "JOIN Client USING(idClient)"
-            + "WHERE idClient = ?";
+            + "WHERE idClient = ? AND etat = 0";
 private static final String SQL_SELECT_BY_TOKEN = "SELECT * FROM `ArticlePanier` "
             + "JOIN Article USING(idArticle) "
             + "JOIN Taille USING(idTaille)"
             + "JOIN Panier USING(idPanier)"
             + "LEFT JOIN Client USING(idClient)"
-            + "WHERE tokenPanier = ?";
+            + "WHERE tokenPanier = ?  AND etat = 0";
 //TODO pas de nouveau panier quand deja un
 //pas de suppression possible
         
@@ -118,7 +118,7 @@ private static final String SQL_DELETE = "DELETE FROM ArticlePanier WHERE idArti
         this.delete(idClient, idArticle, idTaille);
         PanierDao panDao = this.daoFactory.getPanierDao();
         
-        if(panDao.exist(idClient) > -1){
+        if(panDao.exist(idClient) == -1){
             panDao.create(idClient);
         }
         

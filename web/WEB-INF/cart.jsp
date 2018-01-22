@@ -28,8 +28,8 @@
         </ul>
     </div>
     <div class="row ">
-       
-        <a href="#!" class="btn col offset-s9 s3">Commander</a>
+        <a href="home" class="btn col offset-s5 s3">Poursuivre vos achats</a>
+        <a href="order" class="btn col offset-s1 s3">Commander</a>
     </div> 
   </c:otherwise>
 </c:choose>

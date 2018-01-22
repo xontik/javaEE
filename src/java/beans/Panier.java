@@ -6,7 +6,9 @@
 package beans;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Collection;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -47,12 +49,53 @@ public class Panier implements Serializable {
     @Column(name = "tokenPanier")
     private String tokenPanier;
     private Client idClient;
+    private int etat;
+    private Date dateCommande;    
+    private Date dateLivraison;
+    private boolean livre;
 
     public Panier() {
     }
 
     public Panier(Integer idPanier) {
         this.idPanier = idPanier;
+    }
+
+    public void setLivre() {
+        if(dateLivraison != null && dateCommande != null){
+            if(dateLivraison.before(new Date())){
+                this.livre = true;
+            }else{
+                        this.livre = false;
+            }
+        } else {
+                    this.livre = false;
+        }
+        
+    }
+    public boolean getLivre(){
+        return this.livre;
+    }
+    public int getEtat(){
+        return this.etat;
+    }
+    
+    public void setEtat(int etat){
+        this.etat = etat;
+    }
+    public Date getDateLivraison(){
+        return this.dateLivraison;
+    }
+    
+    public void setDateLivraison(Date dateLivraison){
+        this.dateLivraison = dateLivraison;
+    }
+    public Date getDateCommande(){
+        return this.dateCommande;
+    }
+    
+    public void setDateCommande(Date dateCommande){
+        this.dateCommande = dateCommande;
     }
 
     public Integer getIdPanier() {

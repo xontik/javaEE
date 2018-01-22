@@ -33,9 +33,12 @@
                     <a href="home" ><img  src="assets/images/logo.png" alt="Ice cube logo"/></a>
                     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                     <ul class="right hide-on-med-and-down">
+                        <% if (session.getAttribute("nbArticle") != null && (Integer)session.getAttribute("nbArticle") > 0 ){%>
+
                         <li><a href="panier">${0 + nbArticle } article(s)<i class="material-icons right">shopping_cart</i></a></li>
 
-                        <% if (session.getAttribute("logged") != null && ((Boolean) session.getAttribute("logged") == true)) { %>
+                        <% }if (session.getAttribute("logged") != null && ((Boolean) session.getAttribute("logged") == true)) { %>
+                        <li><a href="orders"><i class="material-icons right">account_balance_wallet</i>Commandes</a></li>
                         <li><a href="login">Déconnexion<i class="material-icons right">account_circle</i></a></li>
                             <% } else {%>
                         <li><a href="login">Connectez-vous  !<i class="material-icons right">account_circle</i></a></li>
@@ -45,11 +48,17 @@
                     </ul>
                     <ul class="side-nav" id="mobile-demo">
                         <% if (session.getAttribute("logged") != null && ((Boolean) session.getAttribute("logged") == true)) { %>
-                        <li><a href="login"><i class="material-icons left">account_circle</i>Se connecter</a></li>
+                               <li><a href="login"><i class="material-icons left">account_circle</i>Déconnexion</a></li>
+
+                               <li><a href="orders"><i class="material-icons left">account_balance_wallet</i>Commandes</a></li>
+
                             <% } else {%>
-                        <li><a href="login"><i class="material-icons left">account_circle</i>Mon compte</a></li>
+                                <li><a href="login"><i class="material-icons left">account_circle</i>Se connecter</a></li>
+
                             <% }%>
-                        <li><a href="panier"><i class="material-icons left">shopping_cart</i>${0 + nbArticle } article(s)</a></li>
+                            <% if (session.getAttribute("nbArticle") != null && (Integer)session.getAttribute("nbArticle") > 0 ){%>
+                                <li><a href="panier"><i class="material-icons left">shopping_cart</i>${0 + nbArticle } article(s)</a></li>
+                            <% } %>
                     </ul>
                 </div>
                 <div class="nav-content">
